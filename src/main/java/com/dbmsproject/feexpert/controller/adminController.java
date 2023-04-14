@@ -23,6 +23,12 @@ public class adminController {
     @Autowired
     transactionDAO transDAO;
 
+    @GetMapping("/admin/login")
+    public void showLogin() {;}
+
+    @PostMapping("/admin/login")
+    public boolean login(@RequestBody String userId,@RequestBody String password) {return false;}
+
     @GetMapping("/admin")
     public void showAdmin(){;}
 

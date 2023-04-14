@@ -14,6 +14,12 @@ public class studentController {
     @Autowired
     studentDAO sDAO;
 
+    @GetMapping("/student/login")
+    public int showLogin() {return 0;}
+
+    @PostMapping("/student/login")
+    public int login(@RequestBody String userId,@RequestBody String password) {return 0;}
+
     @GetMapping("/student/{studentId}")
     public Student getStudentById(@PathVariable String studentId) {return null;}
 
