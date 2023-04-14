@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Transaction Management</title>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .management-heading {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .form-box {
+      background-color: #f8f9fa;
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin-bottom: 20px;
+      width: 80%; /* Widened to occupy 80% of the screen width */
+      margin-left: auto; /* Centered horizontally */
+      margin-right: auto; /* Centered horizontally */
+    }
+
+    .form-box input[type="text"] {
+      background-color: #fff;
+      color: #333;
+    }
+
+    .form-box input[type="submit"] {
+      background-color: #333;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="management-heading">Transaction Management</div>
+        <div class="form-box">
+          <h2>Using Transaction ID</h2>
+          <form>
+            <div class="form-group">
+              <label for="transactionID">Transaction ID</label>
+              <input type="text" class="form-control" id="transactionID" placeholder="Enter transaction ID" required>
+            </div>
+            <button type="submit" class="btn btn-dark btn-block">Get Transaction</button>
+          </form>
+        </div>
+        <div class="form-box">
+          <h2>Using Student ID</h2>
+          <form>
+            <div class="form-group">
+              <label for="studentID">Student ID</label>
+              <input type="text" class="form-control" id="studentID" placeholder="Enter student ID" required>
+            </div>
+            <button type="submit" class="btn btn-dark btn-block">Get Transaction</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
