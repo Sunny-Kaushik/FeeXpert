@@ -45,7 +45,7 @@ public class adminController {
     public Student getStudentById(@PathVariable String studentId) {return null;}
 
     @PutMapping("/admin/students/{studentId}")
-    public int updateStudentById(@PathVariable String studentId) {return 0;}
+    public int updateStudentById(@RequestBody Student student, @PathVariable String studentId) {return 0;}
 
     @DeleteMapping("/admin/students/{studentId}")
     public int deleteStudentById(@PathVariable String studentId) {return 0;}
