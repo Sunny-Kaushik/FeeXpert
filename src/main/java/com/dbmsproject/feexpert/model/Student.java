@@ -12,7 +12,7 @@ public class Student extends User{
 
     private String studentName;
 
-    private String batch;
+    private String batchId;
 
     private String address;
 

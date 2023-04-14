@@ -38,6 +38,9 @@ public class adminController {
     @PostMapping("/admin/students")
     public int addStudent(@RequestBody Student student) {return 0;}
 
+    @GetMapping("/admin/addStudent")
+    public void getAddStudentPage() {;}
+
     @GetMapping("/admin/students/{studentId}")
     public Student getStudentById(@PathVariable String studentId) {return null;}
 

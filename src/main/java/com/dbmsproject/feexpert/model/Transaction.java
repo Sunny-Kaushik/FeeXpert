@@ -20,5 +20,7 @@ public class Transaction {
 
     private Date transactonDate;
 
+    private int feePaid;
+
     private int scholarship;
 }

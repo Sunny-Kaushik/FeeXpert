@@ -26,6 +26,15 @@ public class studentController {
     @GetMapping("/student/{studentId}/transactions")
     public List<Transaction> getTransactions(@PathVariable String studentId) {return null;}
 
+    @GetMapping("/student/{studentId}/transactions/{transactionId}")
+    public void showTransactionPage(@PathVariable String studentId, @PathVariable String transactionId) {;}
+
     @PostMapping("/student/{studentId}/transactions")
     public int addTransaction(@PathVariable String studentId, @RequestBody Transaction transaction) {return 0;}
+
+    @GetMapping("/student/{studentId}/newTransaction")
+    public void showNewTransaction(@PathVariable String studentId) {;}
+
+    @GetMapping("/student/{studentId}/pending")
+    public String showPendingFees(@PathVariable String studentId) {return null;}
 }
