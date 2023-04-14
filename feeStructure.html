@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Fee Structure Management</title>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center">Fee Structure Management</h1>
+    <div class="row mt-5">
+      <div class="col-md-6">
+        <h2 class="text-center">Add Fee Structure</h2>
+        <form>
+          <div class="form-group">
+            <label for="feeType">Fee Type</label>
+            <input type="text" class="form-control" id="feeType" placeholder="Enter fee type">
+          </div>
+          <div class="form-group">
+            <label for="feeAmount">Fee Amount</label>
+            <input type="number" class="form-control" id="feeAmount" placeholder="Enter fee amount">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Add Fee Structure</button>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <h2 class="text-center">Update Fee Structure</h2>
+        <form>
+          <div class="form-group">
+            <label for="feeTypeUpdate">Fee Type to Update</label>
+            <input type="text" class="form-control" id="feeTypeUpdate" placeholder="Enter fee type to update">
+          </div>
+          <div class="form-group">
+            <label for="feeAmountUpdate">New Fee Amount</label>
+            <input type="number" class="form-control" id="feeAmountUpdate" placeholder="Enter new fee amount">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Update Fee Structure</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
