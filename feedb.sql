@@ -22,7 +22,7 @@ create table Semester (
 );
 create table FeeStructure (
     batchId int,
-    tutionFee int,
+    tuitionFee int,
     hostelFee int
     messFee int,
 );
@@ -36,15 +36,17 @@ create table Transaction_details (
     scholarship int
 );
 INSERT INTO student (
-        Student_ID,
-        Name,
-        Password,
-        Batch_id,
-        Sem_id,
-        Contact,
-        Address
+        studentID,
+        userId
+        studentName,
+        password,
+        batchId,
+        semId,
+        contact,
+        address
     )
 VALUES (
+        1,
         1,
         'John Doe',
         'mypassword1',
@@ -55,6 +57,7 @@ VALUES (
     ),
     (
         2,
+        2,
         'Jane Smith',
         'mypassword2',
         102,
@@ -63,6 +66,7 @@ VALUES (
         '5678 Oak St, Shelbyville'
     ),
     (
+        3,
         3,
         'Michael Johnson',
         'mypassword3',
@@ -73,6 +77,7 @@ VALUES (
     ),
     (
         4,
+        4,
         'Sarah Lee',
         'mypassword4',
         102,
@@ -82,6 +87,7 @@ VALUES (
     ),
     (
         5,
+        5,
         'David Brown',
         'mypassword5',
         101,
@@ -89,34 +95,35 @@ VALUES (
         '9876543214',
         '1357 Cedar St, Capital City'
     );
-INSERT INTO Admin (Admin_id, Password)
+INSERT INTO Admin (userId, password)
 VALUES (1, 'adminpassword1'),
     (2, 'adminpassword2'),
     (3, 'adminpassword3'),
     (4, 'adminpassword4'),
     (5, 'adminpassword5');
-INSERT INTO Semester (Semester_id, Start_date, End_date)
+INSERT INTO Semester (semesterId, startDate, endDate)
 VALUES (1, '2023-01-01', '2023-05-15'),
     (2, '2023-06-01', '2023-10-15'),
     (3, '2024-01-01', '2024-05-15'),
     (4, '2024-06-01', '2024-10-15'),
     (5, '2025-01-01', '2025-05-15');
-INSERT INTO FeeStructure (Batch_id, tutionFee, messFee, hostelFee)
+INSERT INTO FeeStructure (batchId, tuitionFee, messFee, hostelFee)
 VALUES (101, 5000, 2000, 3000),
     (102, 5500, 2500, 3500),
     (103, 6000, 3000, 4000),
     (104, 6500, 3500, 4500),
     (105, 7000, 4000, 5000);
 INSERT INTO Transaction_details (
-        Transaction_id,
-        Student_id,
-        Sem_id,
-        Date,
-        mode,
-        Scholarship
+        transactionId,
+        studentId,
+        semId,
+        transactionDate,
+        paymentMode,
+        feePaid,
+        scholarship
     )
-VALUES (1, 1, 1, '2023-02-15', 'Online', 1000),
-    (2, 2, 1, '2023-02-16', 'Cash', 0),
-    (3, 3, 2, '2023-03-01', 'Online', 500),
-    (4, 4, 2, '2023-03-02', 'Card', 0),
-    (5, 5, 3, '2023-04-01', 'Online', 0);
+VALUES (1, 1, 1, '2023-02-15', 'Online', 9000, 1000),
+    (2, 2, 1, '2023-02-16', 'Cash', 11500, 0),
+    (3, 3, 2, '2023-03-01', 'Online', 9500, 500),
+    (4, 4, 2, '2023-03-02', 'Card', 11500, 0),
+    (5, 5, 3, '2023-04-01', 'Online', 10000, 0);
