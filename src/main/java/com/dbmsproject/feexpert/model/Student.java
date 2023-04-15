@@ -8,17 +8,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Student extends User{
-    private String studentId;
+    private int studentId;
 
     private String studentName;
 
-    private String batchId;
+    private int batchId;
 
     private String address;
 
     private int contact;
 
-    private String semesterId;
+    private int semesterId;
 
     private int Scholarship;
 }

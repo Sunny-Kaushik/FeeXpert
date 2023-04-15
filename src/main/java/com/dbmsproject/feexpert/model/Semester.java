@@ -10,10 +10,9 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Semester {
-    private String semesterId;
+    private int semesterId;
 
-    private Date startTime;
+    private Date startDate;
 
-    private Date endTime;
-
+    private Date endDate;
 }

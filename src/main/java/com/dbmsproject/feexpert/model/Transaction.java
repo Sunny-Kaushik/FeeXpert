@@ -10,13 +10,13 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Transaction {
-    private String studentId;
+    private int studentId;
 
-    private String semesterId;
+    private int semesterId;
 
-    private int paymentMode;
+    private String paymentMode;
 
-    private String transactionId;
+    private int transactionId;
 
     private Date transactonDate;
 

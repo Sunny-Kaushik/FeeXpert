@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FeeStructure {
-    private String batchId;
+    private int batchId;
 
     private int tuitionFee;
 
