@@ -53,7 +53,7 @@ public class studentDAOImpl implements studentDAO{
 
     @Override
     public Student getStudentById(int studentId) {
-        return jdbcTemplate.queryForObject("select * from student where studentId = ?", new Object[] {studentId}, new BeanPropertyRowMapper<Student>(Student.class));
+        return jdbcTemplate.queryForObject("select * from student where studentID = ?", new Object[] {studentId}, new BeanPropertyRowMapper<Student>(Student.class));
     }
 
     @Override
