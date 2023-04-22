@@ -15,6 +15,17 @@ public class studentDAOImpl implements studentDAO{
     JdbcTemplate jdbcTemplate;
 
     @Override
+    public boolean checkUserPassword(int userId, String password) {
+        Student student = jdbcTemplate.queryForObject("select * from student where userId = ?", new Object[] {userId}, new BeanPropertyRowMapper<Student>(Student.class));
+        if (student.getPassword().equals(password)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    @Override
     public List<Student> viewStudentWithScholarship() {
         List<Student> students = jdbcTemplate.query("SELECT * FROM student WHERE scholarship > 0", new BeanPropertyRowMapper<Student>(Student.class));
         return students;

@@ -8,6 +8,7 @@ import java.util.List;
 
 
 public interface studentDAO {
+    public boolean checkUserPassword(int userId, String password);
 
     public List<Student> viewStudentWithScholarship();
 
