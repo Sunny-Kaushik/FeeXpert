@@ -31,8 +31,8 @@ public class transactionDAOImpl implements transactionDAO{
     }
 
     @Override
-    public int payFee(Transaction transactions) {
-        return jdbcTemplate.update("insert into transaction_details values (?,?,?,?,?,?,?)", transactions.getStudentId(),transactions.getTransactionId(),transactions.getSemesterId(),transactions.getTransactonDate(),transactions.getPaymentMode(),transactions.getFeePaid(),transactions.getScholarship());
+    public int addTransaction(Transaction transaction) {
+        return jdbcTemplate.update("insert into transaction_details values (?,?,?,?,?,?,?)", transaction.getStudentId(),transaction.getTransactionId(),transaction.getSemesterId(),transaction.getTransactonDate(),transaction.getPaymentMode(),transaction.getFeePaid(),transaction.getScholarship());
     }
 
     @Override

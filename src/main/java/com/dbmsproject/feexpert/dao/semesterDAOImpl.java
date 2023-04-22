@@ -27,6 +27,4 @@ public class semesterDAOImpl implements semesterDAO{
     public List<Semester> getSemesterInfo() {
         return jdbcTemplate.query("select * from semester", new BeanPropertyRowMapper<Semester>(Semester.class));
     }
-
-
 }

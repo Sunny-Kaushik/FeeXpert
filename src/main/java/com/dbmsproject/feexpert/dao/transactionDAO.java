@@ -10,6 +10,6 @@ public interface transactionDAO {
     public Transaction getReceipt(int studentId, int semesterId);
     public Transaction getReceiptByTransactionId(int transactionId);
     public List<Transaction> viewTransactions(int studentId);
-    public int payFee(Transaction transactions);
+    public int addTransaction(Transaction transaction);
     public List<Transaction> getAll();
 }

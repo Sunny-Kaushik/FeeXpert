@@ -68,8 +68,8 @@ public class adminController {
     }
 
     @GetMapping("/admin/students/batch/{batchId}")
-    public List<Student> getStudentByBatchId(@PathVariable String batchId) {
-        return null;
+    public List<Student> getStudentByBatchId(@PathVariable int batchId) {
+        return sDAO.getStudentByBatchId(batchId);
     }
 
     @GetMapping("/admin/feeStructure")
