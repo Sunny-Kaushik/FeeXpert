@@ -9,17 +9,15 @@ import java.util.List;
 
 public interface studentDAO {
 
-    public int viewStudentWithScholarship();
+    public List<Student> viewStudentWithScholarship();
 
     public int addStudent(Student student);
 
     public int deleteStudent(int studentId);
 
-    public int updateStudent(Student student, String studentId);
+    public int updateStudent(Student student, int studentId);
 
-    public int updateScholarship(String studentId);
-
-    public List<Student> getStudent();
+    public List<Student> getStudents();
 
     //    checkFeeInfo() left
 }

@@ -15,8 +15,9 @@ public class studentDAOImpl implements studentDAO{
     JdbcTemplate jdbcTemplate;
 
     @Override
-    public int viewStudentWithScholarship() {
-        return jdbcTemplate.query();
+    public List<Student> viewStudentWithScholarship() {
+        List<Student> students = jdbcTemplate.query("SELECT * FROM student WHERE scholarship > 0", new BeanPropertyRowMapper<Student>(Student.class));
+        return students;
     }
 
     @Override
@@ -30,17 +31,12 @@ public class studentDAOImpl implements studentDAO{
     }
 
     @Override
-    public int updateStudent(Student student, String studentId) {
-        return 0;
+    public int updateStudent(Student student, int studentId) {
+        return jdbcTemplate.update("UPDATE student SET studentName = ?, userId = ?, password = ?, semesterId = ?, batchId = ?, contact = ?, address = ?, scholarship = ? WHERE studentID = ?;", student.getStudentName(),student.getUserId(), student.getPassword(),student.getSemesterId(),student.getBatchId(),student.getContact(),student.getAddress(),student.getScholarship(), studentId);
     }
 
     @Override
-    public int updateScholarship(String studentId) {
-        return 0;
-    }
-
-    @Override
-    public List<Student> getStudent() {
+    public List<Student> getStudents() {
         return jdbcTemplate.query("select * from student;",new BeanPropertyRowMapper<Student>(Student.class));
     }
 }

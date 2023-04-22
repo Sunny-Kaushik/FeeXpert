@@ -15,11 +15,6 @@ public class studentController {
     @Autowired
     studentDAO sDAO;
 
-    @GetMapping("/student")
-    public List<Student> getStudent(){
-        return sDAO.getStudent();
-    }
-
     @GetMapping("/student/login")
     public int showLogin() {return 0;}
 
