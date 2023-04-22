@@ -20,5 +20,7 @@ public interface studentDAO {
 
     public List<Student> getStudents();
 
+    public Student getStudentById(int studentId);
+
     //    checkFeeInfo() left
 }

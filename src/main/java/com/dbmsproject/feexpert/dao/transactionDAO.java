@@ -9,9 +9,7 @@ import java.util.List;
 public interface transactionDAO {
     public Transaction getReceipt(int studentId, int semesterId);
     public Transaction getReceiptByTransactionId(int transactionId);
-    public List<Transaction> viewTransactions(String studentId);
-
+    public List<Transaction> viewTransactions(int studentId);
     public int payFee(Transaction transactions);
-
     public List<Transaction> getAll();
 }

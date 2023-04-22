@@ -32,7 +32,7 @@ public class feeStructureDAOImpl implements feeStructureDAO{
 
     @Override
     public int updateFeeStructure(int id, FeeStructure feeStructure) {
-        return jdbcTemplate.update("update feeStructure set tuitionFee = ?, hostelFee = ?, messFee = ? where batchId = ?",feeStructure.getTuitionFee(),feeStructure.getHostelFee(),feeStructure.getMessFee(), id);
+        return jdbcTemplate.update("update feestructure set tuitionFee = ?, hostelFee = ?, messFee = ? where batchId = ?",feeStructure.getTuitionFee(),feeStructure.getHostelFee(),feeStructure.getMessFee(), id);
     }
 
     @Override

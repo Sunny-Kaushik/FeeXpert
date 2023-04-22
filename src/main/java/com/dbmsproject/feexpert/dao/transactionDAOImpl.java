@@ -26,7 +26,7 @@ public class transactionDAOImpl implements transactionDAO{
     }
 
     @Override
-    public List<Transaction> viewTransactions(String studentId) {
+    public List<Transaction> viewTransactions(int studentId) {
         return jdbcTemplate.query("select * from transaction_details where studentId = ?",new Object[]{studentId}, new BeanPropertyRowMapper<Transaction>(Transaction.class));
     }
 

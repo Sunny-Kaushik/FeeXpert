@@ -1,9 +1,6 @@
 package com.dbmsproject.feexpert.controller;
 
-import com.dbmsproject.feexpert.dao.feeStructureDAO;
-import com.dbmsproject.feexpert.dao.semesterDAO;
-import com.dbmsproject.feexpert.dao.studentDAO;
-import com.dbmsproject.feexpert.dao.transactionDAO;
+import com.dbmsproject.feexpert.dao.*;
 import com.dbmsproject.feexpert.model.FeeStructure;
 import com.dbmsproject.feexpert.model.Semester;
 import com.dbmsproject.feexpert.model.Student;
@@ -23,13 +20,15 @@ public class adminController {
     feeStructureDAO feeStructDAO;
     @Autowired
     transactionDAO transDAO;
+    @Autowired
+    adminDAO adDAO;
 
     @GetMapping("/admin/login")
     public void showLogin() {;}
 
     @PostMapping("/admin/login")
     public boolean login(@RequestBody int userId,@RequestBody String password) {
-        return false;
+        return adDAO.checkAdminPassword(userId,password);
     }
 
     @GetMapping("/admin")
@@ -49,10 +48,14 @@ public class adminController {
     public void getAddStudentPage() {;}
 
     @GetMapping("/admin/students/{studentId}")
-    public Student getStudentById(@PathVariable String studentId) {return null;}
+    public Student getStudentById(@PathVariable int studentId) {
+        return sDAO.getStudentById(studentId);
+    }
 
     @PutMapping("/admin/students/{studentId}")
-    public int updateStudentById(@RequestBody Student student, @PathVariable int studentId) {return sDAO.updateStudent(student,studentId);}
+    public int updateStudentById(@RequestBody Student student, @PathVariable int studentId) {
+        return sDAO.updateStudent(student,studentId);
+    }
 
     @DeleteMapping("/admin/students/{studentId}")
     public int deleteStudentById(@PathVariable int studentId) {
@@ -60,19 +63,29 @@ public class adminController {
     }
 
     @GetMapping("/admin/students/pending")
-    public List<Student> getStudentWithPendingFee() {return null;}
+    public List<Student> getStudentWithPendingFee() {
+        return null;
+    }
 
     @GetMapping("/admin/students/batch/{batchId}")
-    public List<Student> getStudentByBatchId(@PathVariable String batchId) {return null;}
+    public List<Student> getStudentByBatchId(@PathVariable String batchId) {
+        return null;
+    }
 
     @GetMapping("/admin/feeStructure")
-    public List<FeeStructure> getAllFeeStructures() {return feeStructDAO.getFeeStructures();}
+    public List<FeeStructure> getAllFeeStructures() {
+        return feeStructDAO.getFeeStructures();
+    }
 
     @PostMapping("/admin/feeStructure")
-    public int addFeeStructure(@RequestBody FeeStructure feeStructure) {return feeStructDAO.addFeeStructure(feeStructure);}
+    public int addFeeStructure(@RequestBody FeeStructure feeStructure) {
+        return feeStructDAO.addFeeStructure(feeStructure);
+    }
 
     @GetMapping("/admin/feeStructure/{batchId}")
-    public FeeStructure getFeeStructureById(@PathVariable int batchId) {return feeStructDAO.getFeeStructureById(batchId);}
+    public FeeStructure getFeeStructureById(@PathVariable int batchId) {
+        return feeStructDAO.getFeeStructureById(batchId);
+    }
 
     @PutMapping("/admin/feeStructure/{batchId}")
     public int updateFeeStructure(@RequestBody FeeStructure feeStructure,@PathVariable int batchId) {
@@ -80,23 +93,37 @@ public class adminController {
     }
 
     @GetMapping("/admin/students/scholarship")
-    public List<Student> getStudentWithScholarship() {return sDAO.viewStudentWithScholarship();}
+    public List<Student> getStudentWithScholarship() {
+        return sDAO.viewStudentWithScholarship();
+    }
 
     @GetMapping("/admin/transactions")
-    public List<Transaction> getAllTransactions() {return null;}
+    public List<Transaction> getAllTransactions() {
+        return transDAO.getAll();
+    }
 
     @GetMapping("/admin/transactions/{transactionId}")
-    public Transaction getTransactionByTransactionId(@PathVariable String transactionId) {return null;}
+    public Transaction getTransactionByTransactionId(@PathVariable int transactionId) {
+        return transDAO.getReceiptByTransactionId(transactionId);
+    }
 
     @GetMapping("/admin/transactions/student/{studentId}")
-    public List<Transaction> getTransactionsByStudentId(@PathVariable String studentId) {return null;}
+    public List<Transaction> getTransactionsByStudentId(@PathVariable int studentId) {
+        return transDAO.viewTransactions(studentId);
+    }
 
     @GetMapping("/admin/semesters")
-    public List<Semester> getSemesters() {return semDAO.getSemesterInfo();}
+    public List<Semester> getSemesters() {
+        return semDAO.getSemesterInfo();
+    }
 
     @PostMapping("/admin/semesters")
-    public int addSemester(@RequestBody Semester sem) {return semDAO.addSemesterInfo(sem);}
+    public int addSemester(@RequestBody Semester sem) {
+        return semDAO.addSemesterInfo(sem);
+    }
 
     @PutMapping("/admin/semesters/{batchId}")
-    public int updateSemester(@RequestBody Semester sem,@PathVariable int batchId) {return semDAO.updateSemesterInfo(sem,batchId);}
+    public int updateSemester(@RequestBody Semester sem,@PathVariable int batchId) {
+        return semDAO.updateSemesterInfo(sem,batchId);
+    }
 }
