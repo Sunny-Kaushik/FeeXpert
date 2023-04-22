@@ -26,6 +26,11 @@ public class feeStructureDAOImpl implements feeStructureDAO{
     }
 
     @Override
+    public FeeStructure getFeeStructureById(int batchId) {
+        return jdbcTemplate.queryForObject("select * from feestructure where batchId = ?", new Object[] {batchId}, new BeanPropertyRowMapper<FeeStructure>(FeeStructure.class));
+    }
+
+    @Override
     public int updateFeeStructure(int id, FeeStructure feeStructure) {
         return jdbcTemplate.update("update feeStructure set tuitionFee = ?, hostelFee = ?, messFee = ? where batchId = ?",feeStructure.getTuitionFee(),feeStructure.getHostelFee(),feeStructure.getMessFee(), id);
     }

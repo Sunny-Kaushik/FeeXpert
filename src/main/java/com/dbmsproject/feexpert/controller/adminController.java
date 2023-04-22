@@ -72,7 +72,7 @@ public class adminController {
     public int addFeeStructure(@RequestBody FeeStructure feeStructure) {return feeStructDAO.addFeeStructure(feeStructure);}
 
     @GetMapping("/admin/feeStructure/{batchId}")
-    public FeeStructure getFeeStructureById() {return null;}
+    public FeeStructure getFeeStructureById(@PathVariable int batchId) {return feeStructDAO.getFeeStructureById(batchId);}
 
     @PutMapping("/admin/feeStructure/{batchId}")
     public int updateFeeStructure(@RequestBody FeeStructure feeStructure,@PathVariable int batchId) {
