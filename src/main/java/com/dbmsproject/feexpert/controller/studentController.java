@@ -1,4 +1,5 @@
 package com.dbmsproject.feexpert.controller;
+import com.dbmsproject.feexpert.dao.transactionDAO;
 import com.dbmsproject.feexpert.model.Student;
 
 import com.dbmsproject.feexpert.dao.studentDAO;
@@ -15,6 +16,9 @@ public class studentController {
     @Autowired
     studentDAO sDAO;
 
+    @Autowired
+    transactionDAO tranDAO;
+
     @GetMapping("/student/login")
     public int showLogin() {return 0;}
 
@@ -29,7 +33,10 @@ public class studentController {
     public List<Transaction> getTransactions(@PathVariable String studentId) {return null;}
 
     @GetMapping("/student/{studentId}/transactions/{transactionId}")
-    public void showTransactionPage(@PathVariable String studentId, @PathVariable String transactionId) {;}
+    public Transaction getReceiptByTransactionId(@PathVariable int studentId, @PathVariable int transactionId) {return null;}
+
+    @GetMapping("/student/{studentId}/transactions/{semesterId}")
+    public Transaction getReceiptBySemesterId(@PathVariable int studentId, @PathVariable int semesterId) {return null;}
 
     @PostMapping("/student/{studentId}/transactions")
     public int addTransaction(@PathVariable String studentId, @RequestBody Transaction transaction) {return 0;}
