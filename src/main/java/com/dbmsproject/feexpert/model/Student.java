@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Student extends User{
-    private int studentId;
+    private int studentID;
 
     private String studentName;
 
@@ -16,9 +16,9 @@ public class Student extends User{
 
     private String address;
 
-    private int contact;
+    private String contact;
 
     private int semesterId;
 
-    private int Scholarship;
+    private int scholarship;
 }

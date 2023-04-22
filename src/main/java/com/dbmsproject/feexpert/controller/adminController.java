@@ -27,7 +27,9 @@ public class adminController {
     public void showLogin() {;}
 
     @PostMapping("/admin/login")
-    public boolean login(@RequestBody String userId,@RequestBody String password) {return false;}
+    public boolean login(@RequestBody int userId,@RequestBody String password) {
+        return false;
+    }
 
     @GetMapping("/admin")
     public void showAdmin(){;}
@@ -36,7 +38,9 @@ public class adminController {
     public List<Student> getAllStudent() {return null;}
 
     @PostMapping("/admin/students")
-    public int addStudent(@RequestBody Student student) {return 0;}
+    public int addStudent(@RequestBody Student student) {
+        return sDAO.addStudent(student);
+    }
 
     @GetMapping("/admin/addStudent")
     public void getAddStudentPage() {;}
@@ -48,7 +52,9 @@ public class adminController {
     public int updateStudentById(@RequestBody Student student, @PathVariable String studentId) {return 0;}
 
     @DeleteMapping("/admin/students/{studentId}")
-    public int deleteStudentById(@PathVariable String studentId) {return 0;}
+    public int deleteStudentById(@PathVariable int studentId) {
+        return sDAO.deleteStudent(studentId);
+    }
 
     @GetMapping("/admin/students/pending")
     public List<Student> getStudentWithPendingFee() {return null;}

@@ -3,6 +3,7 @@ package com.dbmsproject.feexpert.dao;
 import com.dbmsproject.feexpert.model.Student;
 import com.dbmsproject.feexpert.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -14,19 +15,18 @@ public class studentDAOImpl implements studentDAO{
     JdbcTemplate jdbcTemplate;
 
     @Override
-    public int viewScholarship(String studentId) {
-        return 0;
+    public int viewStudentWithScholarship() {
+        return jdbcTemplate.query();
     }
-
 
     @Override
     public int addStudent(Student student) {
-        return 0;
+        return jdbcTemplate.update("insert into student values (?,?,?,?,?,?,?,?,?)",student.getStudentID(),student.getStudentName(),student.getUserId(), student.getPassword(),student.getSemesterId(),student.getBatchId(),student.getContact(),student.getAddress(),student.getScholarship());
     }
 
     @Override
-    public int deleteStudent(String studentId) {
-        return 0;
+    public int deleteStudent(int studentId) {
+        return jdbcTemplate.update("delete from student where studentID = ?", studentId);
     }
 
     @Override
@@ -40,5 +40,7 @@ public class studentDAOImpl implements studentDAO{
     }
 
     @Override
-    public int getAllStudent() { return 0; }
+    public List<Student> getStudent() {
+        return jdbcTemplate.query("select * from student;",new BeanPropertyRowMapper<Student>(Student.class));
+    }
 }

@@ -7,7 +7,8 @@ create table student (
     semesterId int,
     batchId int,
     contact varchar(10),
-    address varchar(255)
+    address varchar(255),
+    scholarship int
 );
 
 create table Admin (

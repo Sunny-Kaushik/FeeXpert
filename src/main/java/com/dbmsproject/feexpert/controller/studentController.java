@@ -1,4 +1,5 @@
 package com.dbmsproject.feexpert.controller;
+import com.dbmsproject.feexpert.model.Student;
 
 import com.dbmsproject.feexpert.dao.studentDAO;
 import com.dbmsproject.feexpert.model.Student;
@@ -14,6 +15,11 @@ public class studentController {
     @Autowired
     studentDAO sDAO;
 
+    @GetMapping("/student")
+    public List<Student> getStudent(){
+        return sDAO.getStudent();
+    }
+
     @GetMapping("/student/login")
     public int showLogin() {return 0;}
 
@@ -22,6 +28,7 @@ public class studentController {
 
     @GetMapping("/student/{studentId}")
     public Student getStudentById(@PathVariable String studentId) {return null;}
+
 
     @GetMapping("/student/{studentId}/transactions")
     public List<Transaction> getTransactions(@PathVariable String studentId) {return null;}
