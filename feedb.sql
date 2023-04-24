@@ -42,7 +42,7 @@ INSERT INTO student (
         studentName,
         password,
         batchId,
-        semId,
+        semesterId,
         contact,
         address
     )
@@ -117,7 +117,7 @@ VALUES (101, 5000, 2000, 3000),
 INSERT INTO Transaction_details (
         transactionId,
         studentId,
-        semId,
+        semesterId,
         transactionDate,
         paymentMode,
         feePaid,
