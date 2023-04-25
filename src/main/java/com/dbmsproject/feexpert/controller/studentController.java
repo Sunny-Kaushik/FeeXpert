@@ -54,14 +54,20 @@ public class studentController {
 
     @GetMapping("/student/{studentId}/feePayment")
     public FeeDetail showFeeDetail(@PathVariable int studentId) {
-        return sDAO.getFeeDetail(studentId);
+        if (sDAO.isFeePending(studentId)) {
+            return sDAO.getFeeDetail(studentId);
+        }
+        return null;
     }
 
     @GetMapping("/student/{studentId}/newTransaction")
     public void showNewTransaction(@PathVariable int studentId) {;}
 
     @GetMapping("/student/{studentId}/pending")
-    public String showPendingFees(@PathVariable int studentId) {
+    public FeeDetail showPendingFees(@PathVariable int studentId) {
+        if (sDAO.isFeePending(studentId)) {
+            return sDAO.getFeeDetail(studentId);
+        }
         return null;
     }
 }

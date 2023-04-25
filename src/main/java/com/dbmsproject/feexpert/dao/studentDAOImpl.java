@@ -62,6 +62,12 @@ public class studentDAOImpl implements studentDAO{
     }
 
     @Override
+    public boolean isFeePending(int studentId) {
+        List<Student> sid = jdbcTemplate.query("select * from student s where s.studentID not in (select studentId from transaction_details td where td.semesterId = s.semesterId) and s.studentID = ?;",new Object[] {studentId}, new BeanPropertyRowMapper<Student>(Student.class));
+        return sid.size() != 0;
+    }
+
+    @Override
     public FeeDetail getFeeDetail(int studentId) {
         return jdbcTemplate.queryForObject("SELECT s.studentID, s.studentName, s.batchId, s.semesterId, fs.messFee, fs.hostelFee, fs.tuitionFee, s.scholarship, (fs.hostelFee + fs.messFee + fs.tuitionFee - s.scholarship) AS totalFee FROM student s INNER JOIN feestructure fs ON s.batchId = fs.batchId where s.studentID = ?", new Object[] {studentId}, new BeanPropertyRowMapper<FeeDetail>(FeeDetail.class));
     }

@@ -23,6 +23,8 @@ public interface studentDAO {
 
     public List<Student> getStudentByBatchId(int batchId);
 
+    public boolean isFeePending(int studentId);
+
     public FeeDetail getFeeDetail(int studentId);
 
     public List<Student> getLateFeeStudents();
