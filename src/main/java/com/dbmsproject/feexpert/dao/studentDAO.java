@@ -2,8 +2,6 @@ package com.dbmsproject.feexpert.dao;
 
 import com.dbmsproject.feexpert.model.FeeDetail;
 import com.dbmsproject.feexpert.model.Student;
-import com.dbmsproject.feexpert.model.Transaction;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -27,5 +25,5 @@ public interface studentDAO {
 
     public FeeDetail getFeeDetail(int studentId);
 
-    //    checkFeeInfo() left
+    public List<Student> getLateFeeStudents();
 }

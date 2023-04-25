@@ -1,10 +1,7 @@
 package com.dbmsproject.feexpert.controller;
 
 import com.dbmsproject.feexpert.dao.*;
-import com.dbmsproject.feexpert.model.FeeStructure;
-import com.dbmsproject.feexpert.model.Semester;
-import com.dbmsproject.feexpert.model.Student;
-import com.dbmsproject.feexpert.model.Transaction;
+import com.dbmsproject.feexpert.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -64,7 +61,7 @@ public class adminController {
 
     @GetMapping("/admin/students/pending")
     public List<Student> getStudentWithPendingFee() {
-        return null;
+        return sDAO.getLateFeeStudents();
     }
 
     @GetMapping("/admin/students/batch/{batchId}")
