@@ -1,5 +1,6 @@
 package com.dbmsproject.feexpert.dao;
 
+import com.dbmsproject.feexpert.model.FeeDetail;
 import com.dbmsproject.feexpert.model.Student;
 import com.dbmsproject.feexpert.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +60,10 @@ public class studentDAOImpl implements studentDAO{
     @Override
     public List<Student> getStudentByBatchId(int batchId) {
         return jdbcTemplate.query("select * from student where batchId = ?", new Object[]{batchId}, new BeanPropertyRowMapper<Student>(Student.class));
+    }
+
+    @Override
+    public FeeDetail getFeeDetail(int studentId) {
+        return jdbcTemplate.queryForObject("SELECT s.studentID, s.studentName, s.batchId, s.semesterId, fs.messFee, fs.hostelFee, fs.tuitionFee, s.scholarship, (fs.hostelFee + fs.messFee + fs.tuitionFee - s.scholarship) AS totalFee FROM student s INNER JOIN feestructure fs ON s.batchId = fs.batchId where s.studentID = ?", new Object[] {studentId}, new BeanPropertyRowMapper<FeeDetail>(FeeDetail.class));
     }
 }

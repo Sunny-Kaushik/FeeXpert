@@ -1,5 +1,6 @@
 package com.dbmsproject.feexpert.controller;
 import com.dbmsproject.feexpert.dao.transactionDAO;
+import com.dbmsproject.feexpert.model.FeeDetail;
 import com.dbmsproject.feexpert.model.Student;
 
 import com.dbmsproject.feexpert.dao.studentDAO;
@@ -47,15 +48,20 @@ public class studentController {
     }
 
     @PostMapping("/student/{studentId}/transactions")
-    public int addTransaction(@PathVariable String studentId, @RequestBody Transaction transaction) {
+    public int addTransaction(@PathVariable int studentId, @RequestBody Transaction transaction) {
         return tranDAO.addTransaction(transaction);
     }
 
+    @GetMapping("/student/{studentId}/feePayment")
+    public FeeDetail showFeeDetail(@PathVariable int studentId) {
+        return sDAO.getFeeDetail(studentId);
+    }
+
     @GetMapping("/student/{studentId}/newTransaction")
-    public void showNewTransaction(@PathVariable String studentId) {;}
+    public void showNewTransaction(@PathVariable int studentId) {;}
 
     @GetMapping("/student/{studentId}/pending")
-    public String showPendingFees(@PathVariable String studentId) {
+    public String showPendingFees(@PathVariable int studentId) {
         return null;
     }
 }
