@@ -78,7 +78,7 @@ public class studentController {
         }
         else {
             object.put("studentId", studentId);
-            object.put("status","Already Paid the Fees");
+            object.put("status","Paid");
         }
         return object;
     }
