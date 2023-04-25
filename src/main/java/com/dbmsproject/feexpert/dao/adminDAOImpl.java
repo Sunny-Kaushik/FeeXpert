@@ -13,12 +13,9 @@ public class adminDAOImpl implements adminDAO{
 
     @Override
     public boolean checkAdminPassword(int userId, String password) {
-        Admin admin = jdbcTemplate.queryForObject("select * from admin where userId = ?", new Object[] {userId}, new BeanPropertyRowMapper<Admin>(Admin.class));
-        if (admin.getPassword().equals(password)) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        String sqlStatement = "select * from admin where userId = ?";
+        Admin admin = jdbcTemplate.queryForObject(sqlStatement, new Object[] {userId}, new BeanPropertyRowMapper<Admin>(Admin.class));
+        assert admin != null;
+        return admin.getPassword().equals(password);
     }
 }

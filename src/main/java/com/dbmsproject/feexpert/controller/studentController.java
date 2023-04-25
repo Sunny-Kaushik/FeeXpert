@@ -1,4 +1,5 @@
 package com.dbmsproject.feexpert.controller;
+import com.dbmsproject.feexpert.dao.feeStructureDAO;
 import com.dbmsproject.feexpert.dao.transactionDAO;
 import com.dbmsproject.feexpert.model.FeeDetail;
 import com.dbmsproject.feexpert.model.Student;
@@ -8,7 +9,9 @@ import com.dbmsproject.feexpert.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class studentController {
@@ -18,6 +21,9 @@ public class studentController {
 
     @Autowired
     transactionDAO tranDAO;
+
+    @Autowired
+    feeStructureDAO feeDAO;
 
     @GetMapping("/student/login")
     public int showLogin() {return 0;}
@@ -53,21 +59,38 @@ public class studentController {
     }
 
     @GetMapping("/student/{studentId}/feePayment")
-    public FeeDetail showFeeDetail(@PathVariable int studentId) {
+    @ResponseBody
+    public Object showFeeDetail(@PathVariable int studentId) {
+        Map<String, Object> object = new HashMap<>();
         if (sDAO.isFeePending(studentId)) {
-            return sDAO.getFeeDetail(studentId);
+            FeeDetail feeDetail = sDAO.getFeeDetail(studentId);
+            object.put("StudentId", feeDetail.getStudentID());
+            object.put("StudentName", feeDetail.getStudentName());
+            object.put("batchId", feeDetail.getBatchId());
+            object.put("semesterId", feeDetail.getSemesterId());
+            object.put("messFee",feeDetail.getMessFee());
+            object.put("hostelFee", feeDetail.getHostelFee());
+            object.put("tuitionFee", feeDetail.getTuitionFee());
+            object.put("scholarship", feeDetail.getScholarship());
+            object.put("totalFee", feeDetail.getTotalFee());
+            object.put("status", "Unpaid");
+
         }
-        return null;
+        else {
+            object.put("studentId", studentId);
+            object.put("status","Already Paid the Fees");
+        }
+        return object;
     }
 
     @GetMapping("/student/{studentId}/newTransaction")
     public void showNewTransaction(@PathVariable int studentId) {;}
 
-    @GetMapping("/student/{studentId}/pending")
-    public FeeDetail showPendingFees(@PathVariable int studentId) {
+    @GetMapping("/student/{studentId}/feeToPay")
+    public int getFeeToPay(@PathVariable int studentId) {
         if (sDAO.isFeePending(studentId)) {
-            return sDAO.getFeeDetail(studentId);
+            return feeDAO.getFeeToPay(studentId);
         }
-        return null;
+        return 0;
     }
 }

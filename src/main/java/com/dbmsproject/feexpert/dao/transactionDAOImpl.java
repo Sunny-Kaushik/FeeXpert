@@ -17,26 +17,31 @@ public class transactionDAOImpl implements transactionDAO{
 
     @Override
     public Transaction getReceipt(int studentId, int semesterId) {
-        return jdbcTemplate.queryForObject("select * from transaction_details where studentId = ? and semesterId = ?", new Object[] {studentId,semesterId}, new BeanPropertyRowMapper<Transaction>(Transaction.class));
+        String sqlStatement = "select * from transaction_details where studentId = ? and semesterId = ?";
+        return jdbcTemplate.queryForObject(sqlStatement, new Object[] {studentId,semesterId}, new BeanPropertyRowMapper<Transaction>(Transaction.class));
     }
 
     @Override
     public Transaction getReceiptByTransactionId(int transactionId) {
-        return jdbcTemplate.queryForObject("select * from transaction_details where transactionId = ?", new Object[] {transactionId}, new BeanPropertyRowMapper<Transaction>(Transaction.class));
+        String sqlStatement = "select * from transaction_details where transactionId = ?";
+        return jdbcTemplate.queryForObject(sqlStatement, new Object[] {transactionId}, new BeanPropertyRowMapper<Transaction>(Transaction.class));
     }
 
     @Override
     public List<Transaction> viewTransactions(int studentId) {
-        return jdbcTemplate.query("select * from transaction_details where studentId = ?",new Object[]{studentId}, new BeanPropertyRowMapper<Transaction>(Transaction.class));
+        String sqlStatement = "select * from transaction_details where studentId = ?";
+        return jdbcTemplate.query(sqlStatement,new Object[]{studentId}, new BeanPropertyRowMapper<Transaction>(Transaction.class));
     }
 
     @Override
     public int addTransaction(Transaction transaction) {
-        return jdbcTemplate.update("insert into transaction_details values (?,?,?,?,?,?,?)", transaction.getStudentId(),transaction.getTransactionId(),transaction.getSemesterId(),transaction.getTransactonDate(),transaction.getPaymentMode(),transaction.getFeePaid(),transaction.getScholarship());
+        String sqlStatement = "insert into transaction_details values (?,?,?,?,?,?,?)";
+        return jdbcTemplate.update(sqlStatement, transaction.getStudentId(),transaction.getTransactionId(),transaction.getSemesterId(),transaction.getTransactonDate(),transaction.getPaymentMode(),transaction.getFeePaid(),transaction.getScholarship());
     }
 
     @Override
     public List<Transaction> getAll() {
-        return jdbcTemplate.query("select * from transaction_details",new BeanPropertyRowMapper<Transaction>(Transaction.class));
+        String sqlStatement = "select * from transaction_details";
+        return jdbcTemplate.query(sqlStatement, new BeanPropertyRowMapper<Transaction>(Transaction.class));
     }
 }

@@ -16,64 +16,70 @@ public class studentDAOImpl implements studentDAO{
 
     @Override
     public boolean checkUserPassword(int userId, String password) {
-        Student student = jdbcTemplate.queryForObject("select * from student where userId = ?", new Object[] {userId}, new BeanPropertyRowMapper<Student>(Student.class));
-        if (student.getPassword().equals(password)) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        String sqlStatement = "select * from student where userId = ?";
+        Student student = jdbcTemplate.queryForObject(sqlStatement, new Object[] {userId}, new BeanPropertyRowMapper<Student>(Student.class));
+        assert student != null;
+        return student.getPassword().equals(password);
     }
 
     @Override
     public List<Student> viewStudentWithScholarship() {
-        List<Student> students = jdbcTemplate.query("SELECT * FROM student WHERE scholarship > 0", new BeanPropertyRowMapper<Student>(Student.class));
-        return students;
+        String sqlStatement = "SELECT * FROM student WHERE scholarship > 0";
+        return jdbcTemplate.query(sqlStatement, new BeanPropertyRowMapper<Student>(Student.class));
     }
 
     @Override
     public int addStudent(Student student) {
-        return jdbcTemplate.update("insert into student values (?,?,?,?,?,?,?,?,?)",student.getStudentID(),student.getStudentName(),student.getUserId(), student.getPassword(),student.getSemesterId(),student.getBatchId(),student.getContact(),student.getAddress(),student.getScholarship());
+        String sqlStatement = "insert into student values (?,?,?,?,?,?,?,?,?)";
+        return jdbcTemplate.update(sqlStatement, student.getStudentID(),student.getStudentName(),student.getUserId(), student.getPassword(),student.getSemesterId(),student.getBatchId(),student.getContact(),student.getAddress(),student.getScholarship());
     }
 
     @Override
     public int deleteStudent(int studentId) {
-        return jdbcTemplate.update("delete from student where studentID = ?", studentId);
+        String sqlStatement = "delete from student where studentID = ?";
+        return jdbcTemplate.update(sqlStatement, studentId);
     }
 
     @Override
     public int updateStudent(Student student, int studentId) {
-        return jdbcTemplate.update("UPDATE student SET studentName = ?, userId = ?, password = ?, semesterId = ?, batchId = ?, contact = ?, address = ?, scholarship = ? WHERE studentID = ?;", student.getStudentName(),student.getUserId(), student.getPassword(),student.getSemesterId(),student.getBatchId(),student.getContact(),student.getAddress(),student.getScholarship(), studentId);
+        String sqlStatement ="UPDATE student SET studentName = ?, userId = ?, password = ?, semesterId = ?, batchId = ?, contact = ?, address = ?, scholarship = ? WHERE studentID = ?";
+        return jdbcTemplate.update(sqlStatement, student.getStudentName(),student.getUserId(), student.getPassword(),student.getSemesterId(),student.getBatchId(),student.getContact(),student.getAddress(),student.getScholarship(), studentId);
     }
 
     @Override
     public List<Student> getStudents() {
-        return jdbcTemplate.query("select * from student;",new BeanPropertyRowMapper<Student>(Student.class));
+        String sqlStatement = "select * from student;";
+        return jdbcTemplate.query(sqlStatement, new BeanPropertyRowMapper<Student>(Student.class));
     }
 
     @Override
     public Student getStudentById(int studentId) {
-        return jdbcTemplate.queryForObject("select * from student where studentID = ?", new Object[] {studentId}, new BeanPropertyRowMapper<Student>(Student.class));
+        String sqlStatement = "select * from student where studentID = ?";
+        return jdbcTemplate.queryForObject(sqlStatement, new Object[] {studentId}, new BeanPropertyRowMapper<Student>(Student.class));
     }
 
     @Override
     public List<Student> getStudentByBatchId(int batchId) {
-        return jdbcTemplate.query("select * from student where batchId = ?", new Object[]{batchId}, new BeanPropertyRowMapper<Student>(Student.class));
+        String sqlStatement = "select * from student where batchId = ?";
+        return jdbcTemplate.query(sqlStatement, new Object[]{batchId}, new BeanPropertyRowMapper<Student>(Student.class));
     }
 
     @Override
     public boolean isFeePending(int studentId) {
-        List<Student> sid = jdbcTemplate.query("select * from student s where s.studentID not in (select studentId from transaction_details td where td.semesterId = s.semesterId) and s.studentID = ?;",new Object[] {studentId}, new BeanPropertyRowMapper<Student>(Student.class));
+        String sqlStatement = "select * from student s where s.studentID not in (select studentId from transaction_details td where td.semesterId = s.semesterId) and s.studentID = ?";
+        List<Student> sid = jdbcTemplate.query(sqlStatement, new Object[] {studentId}, new BeanPropertyRowMapper<Student>(Student.class));
         return sid.size() != 0;
     }
 
     @Override
     public FeeDetail getFeeDetail(int studentId) {
-        return jdbcTemplate.queryForObject("SELECT s.studentID, s.studentName, s.batchId, s.semesterId, fs.messFee, fs.hostelFee, fs.tuitionFee, s.scholarship, (fs.hostelFee + fs.messFee + fs.tuitionFee - s.scholarship) AS totalFee FROM student s INNER JOIN feestructure fs ON s.batchId = fs.batchId where s.studentID = ?", new Object[] {studentId}, new BeanPropertyRowMapper<FeeDetail>(FeeDetail.class));
+        String sqlStatement = "SELECT s.studentID, s.studentName, s.batchId, s.semesterId, fs.messFee, fs.hostelFee, fs.tuitionFee, s.scholarship, (fs.hostelFee + fs.messFee + fs.tuitionFee - s.scholarship) AS totalFee FROM student s INNER JOIN feestructure fs ON s.batchId = fs.batchId where s.studentID = ?";
+        return jdbcTemplate.queryForObject(sqlStatement, new Object[] {studentId}, new BeanPropertyRowMapper<FeeDetail>(FeeDetail.class));
     }
 
     @Override
     public List<Student> getLateFeeStudents() {
-        return jdbcTemplate.query("select * from student s where studentID not in ( select studentId from transaction_details td where td.semesterId = s.semesterId )", new BeanPropertyRowMapper<Student>(Student.class));
+        String sqlStatement = "select * from student s where studentID not in ( select studentId from transaction_details td where td.semesterId = s.semesterId )";
+        return jdbcTemplate.query(sqlStatement, new BeanPropertyRowMapper<Student>(Student.class));
     }
 }

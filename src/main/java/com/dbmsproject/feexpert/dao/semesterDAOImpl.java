@@ -15,16 +15,19 @@ public class semesterDAOImpl implements semesterDAO{
 
     @Override
     public int updateSemesterInfo(Semester sem, int semesterId) {
-        return jdbcTemplate.update("update semester set startDate = ?, endDate = ? where semesterId = ?", sem.getStartDate(),sem.getEndDate(),semesterId);
+        String sqlStatement = "update semester set startDate = ?, endDate = ? where semesterId = ?";
+        return jdbcTemplate.update(sqlStatement, sem.getStartDate(),sem.getEndDate(),semesterId);
     }
 
     @Override
     public int addSemesterInfo(Semester sem) {
-        return jdbcTemplate.update("insert into semester values (?,?,?)", sem.getSemesterId(), sem.getStartDate(),sem.getEndDate());
+        String sqlStatement = "insert into semester values (?,?,?)";
+        return jdbcTemplate.update(sqlStatement, sem.getSemesterId(), sem.getStartDate(),sem.getEndDate());
     }
 
     @Override
     public List<Semester> getSemesterInfo() {
-        return jdbcTemplate.query("select * from semester", new BeanPropertyRowMapper<Semester>(Semester.class));
+        String sqlStatement = "select * from semester";
+        return jdbcTemplate.query(sqlStatement, new BeanPropertyRowMapper<Semester>(Semester.class));
     }
 }
