@@ -36,7 +36,7 @@ public class transactionDAOImpl implements transactionDAO{
     @Override
     public int addTransaction(Transaction transaction) {
         String sqlStatement = "insert into transaction_details values (?,?,?,?,?,?,?)";
-        return jdbcTemplate.update(sqlStatement, transaction.getStudentId(),transaction.getTransactionId(),transaction.getSemesterId(),transaction.getTransactonDate(),transaction.getPaymentMode(),transaction.getFeePaid(),transaction.getScholarship());
+        return jdbcTemplate.update(sqlStatement, transaction.getStudentId(),transaction.getTransactionId(),transaction.getSemesterId(),transaction.getTransactionDate(),transaction.getPaymentMode(),transaction.getFeePaid(),transaction.getScholarship());
     }
 
     @Override

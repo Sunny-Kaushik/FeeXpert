@@ -18,7 +18,7 @@ public class Transaction {
 
     private int transactionId;
 
-    private Date transactonDate;
+    private Date transactionDate;
 
     private int feePaid;
 

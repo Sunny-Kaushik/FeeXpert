@@ -76,7 +76,7 @@ public class adminController {
     }
 
     @PutMapping("/admin/feeStructure/{batchId}")
-    public int updateFeeStructure(@RequestBody FeeStructure feeStructure,@PathVariable int batchId) {
+    public int updateFeeStructure(@RequestBody FeeStructure feeStructure,@PathVariable("batchId") int batchId) {
         return feeStructDAO.updateFeeStructure(batchId,feeStructure);
     }
 

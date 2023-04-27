@@ -51,8 +51,8 @@ public class studentController {
         return tranDAO.getReceiptByTransactionId(transactionId);
     }
 
-    @GetMapping("/student/{studentId}/transactions/{semesterId}")
-    public Transaction getReceiptBySemesterId(@PathVariable int studentId, @PathVariable int semesterId) {
+    @GetMapping("/student/{studentId}/transactionBySem/{semesterId}")
+    public Transaction getReceiptBySemesterId(@PathVariable("studentId") int studentId, @PathVariable("") int semesterId) {
         return tranDAO.getReceipt(studentId, semesterId);
     }
 
