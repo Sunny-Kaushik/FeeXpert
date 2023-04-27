@@ -26,9 +26,6 @@ public class studentController {
     @Autowired
     feeStructureDAO feeDAO;
 
-    @GetMapping("/student/login")
-    public int showLogin() {return 0;}
-
     @PostMapping("/student/login")
     public boolean login(@RequestBody User user) {
         return sDAO.checkUserPassword(user.getUserId(), user.getPassword());
@@ -88,9 +85,6 @@ public class studentController {
         }
         return object;
     }
-
-    @GetMapping("/student/{studentId}/newTransaction")
-    public void showNewTransaction(@PathVariable int studentId) {;}
 
     @GetMapping("/student/{studentId}/feeToPay")
     public int getFeeToPay(@PathVariable int studentId) {

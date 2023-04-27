@@ -20,16 +20,10 @@ public class adminController {
     @Autowired
     adminDAO adDAO;
 
-    @GetMapping("/admin/login")
-    public void showLogin() {;}
-
     @PostMapping("/admin/login")
     public boolean login(@RequestBody User user) {
         return adDAO.checkAdminPassword(user.getUserId(), user.getPassword());
     }
-
-    @GetMapping("/admin")
-    public void showAdmin(){;}
 
     @GetMapping("/admin/students")
     public List<Student> getAllStudent() {
@@ -40,9 +34,6 @@ public class adminController {
     public int addStudent(@RequestBody Student student) {
         return sDAO.addStudent(student);
     }
-
-    @GetMapping("/admin/addStudent")
-    public void getAddStudentPage() {;}
 
     @GetMapping("/admin/students/{studentId}")
     public Student getStudentById(@PathVariable int studentId) {
