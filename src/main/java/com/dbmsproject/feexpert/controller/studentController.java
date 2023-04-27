@@ -6,6 +6,7 @@ import com.dbmsproject.feexpert.model.Student;
 
 import com.dbmsproject.feexpert.dao.studentDAO;
 import com.dbmsproject.feexpert.model.Transaction;
+import com.dbmsproject.feexpert.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,8 +30,13 @@ public class studentController {
     public int showLogin() {return 0;}
 
     @PostMapping("/student/login")
-    public boolean login(@RequestBody int userId,@RequestBody String password) {
-        return sDAO.checkUserPassword(userId, password);
+    public boolean login(@RequestBody User user) {
+        return sDAO.checkUserPassword(user.getUserId(), user.getPassword());
+    }
+
+    @GetMapping("/student/userId/{userId}")
+    public int getStudentIdByUserId(@PathVariable int userId) {
+        return sDAO.getStudentIdByUserId(userId);
     }
 
     @GetMapping("/student/{studentId}")

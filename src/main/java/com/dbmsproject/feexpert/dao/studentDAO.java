@@ -21,6 +21,8 @@ public interface studentDAO {
 
     public Student getStudentById(int studentId);
 
+    public int getStudentIdByUserId(int userId);
+
     public List<Student> getStudentByBatchId(int batchId);
 
     public boolean isFeePending(int studentId);

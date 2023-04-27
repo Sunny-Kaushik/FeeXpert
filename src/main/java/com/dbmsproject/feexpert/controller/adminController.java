@@ -24,8 +24,8 @@ public class adminController {
     public void showLogin() {;}
 
     @PostMapping("/admin/login")
-    public boolean login(@RequestBody int userId,@RequestBody String password) {
-        return adDAO.checkAdminPassword(userId,password);
+    public boolean login(@RequestBody User user) {
+        return adDAO.checkAdminPassword(user.getUserId(), user.getPassword());
     }
 
     @GetMapping("/admin")

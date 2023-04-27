@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Objects;
+
 @Repository
 public class studentDAOImpl implements studentDAO{
 
@@ -56,6 +58,12 @@ public class studentDAOImpl implements studentDAO{
     public Student getStudentById(int studentId) {
         String sqlStatement = "select * from student where studentID = ?";
         return jdbcTemplate.queryForObject(sqlStatement, new Object[] {studentId}, new BeanPropertyRowMapper<Student>(Student.class));
+    }
+
+    @Override
+    public int getStudentIdByUserId(int userId) {
+        String sqlStatement = "select studentID from student where userId = ?";
+        return jdbcTemplate.queryForObject(sqlStatement, new Object[] {userId}, Integer.class);
     }
 
     @Override
